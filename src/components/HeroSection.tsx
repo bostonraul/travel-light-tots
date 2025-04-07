@@ -11,7 +11,7 @@ const HeroSection = () => {
           <div className="space-y-6 animate-fade-in">
             <div className="flex items-center space-x-2">
               <Baby className="h-8 w-8 text-tots-peach" />
-              <h2 className="text-lg font-medium text-gray-600">Travel Light Tots</h2>
+              <h2 className="text-lg font-medium text-gray-600">ToyBuddy</h2>
             </div>
             
             <h1 className="font-bold text-4xl md:text-5xl lg:text-6xl">
@@ -41,8 +41,8 @@ const HeroSection = () => {
               <div className="bg-white rounded-3xl shadow-xl overflow-hidden border-8 border-white relative z-10">
                 <div className="w-72 h-80 md:w-96 md:h-[28rem] bg-gradient-to-br from-tots-peach/30 to-tots-blue/30 rounded-2xl flex items-center justify-center">
                   <img 
-                    src="https://images.unsplash.com/photo-1613734270110-3f7782e27653?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3" 
-                    alt="Happy family traveling with baby" 
+                    src="https://images.unsplash.com/photo-1566004100631-35d015d6a99b?q=80&w=1000&auto=format&fit=crop" 
+                    alt="Happy family with baby on vacation" 
                     className="w-full h-full object-cover rounded-2xl"
                   />
                 </div>
