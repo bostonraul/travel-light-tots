@@ -25,7 +25,7 @@ const TravelForm = () => {
   const [destination, setDestination] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showDialog, setShowDialog] = useState(false);
-  const [webhookUrl, setWebhookUrl] = useState('');
+  const [webhookUrl, setWebhookUrl] = useState('https://script.google.com/macros/s/AKfycbwn-uEohSTftq6lBsx8woI2b2Fc0wWeO6TiEWK8Cootxf7s7ad3btV37UwSReI8dlpbFg/exec');
 
   // For development/demo purposes, allow setting a webhook URL
   // In production, this would be hardcoded or stored securely
