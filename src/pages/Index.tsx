@@ -2,6 +2,8 @@
 import React from 'react';
 import HeroSection from '@/components/HeroSection';
 import BenefitsSection from '@/components/BenefitsSection';
+import VacationLifesaverSection from '@/components/VacationLifesaverSection';
+import PackLightSection from '@/components/PackLightSection';
 
 const Index = () => {
   return (
@@ -9,6 +11,9 @@ const Index = () => {
       <main>
         <HeroSection />
         <BenefitsSection />
+        
+        <VacationLifesaverSection />
+        <PackLightSection />
         
         <section className="py-16 px-4">
           <div className="container mx-auto max-w-6xl text-center">
