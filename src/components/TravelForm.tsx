@@ -25,11 +25,11 @@ const TravelForm = () => {
   const [destination, setDestination] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showDialog, setShowDialog] = useState(false);
-  const [webhookUrl, setWebhookUrl] = useState('https://script.google.com/macros/s/AKfycbwn-uEohSTftq6lBsx8woI2b2Fc0wWeO6TiEWK8Cootxf7s7ad3btV37UwSReI8dlpbFg/exec');
+  const webhookUrl = "https://script.google.com/macros/s/AKfycbwn-uEohSTftq6lBsx8woI2b2Fc0wWeO6TiEWK8Cootxf7s7ad3btV37UwSReI8dlpbFg/exec"; // replace with your actual webhook URL
 
   // For development/demo purposes, allow setting a webhook URL
   // In production, this would be hardcoded or stored securely
-  const [showWebhookConfig, setShowWebhookConfig] = useState(false);
+ // const [showWebhookConfig, setShowWebhookConfig] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -150,30 +150,7 @@ const TravelForm = () => {
           )}
         </Button>
         
-        {/* Development tool for setting webhook URL */}
-        <div className="mt-6 pt-4 border-t border-gray-100">
-          <button
-            type="button"
-            onClick={() => setShowWebhookConfig(!showWebhookConfig)}
-            className="text-xs text-gray-400 hover:text-gray-600"
-          >
-            {showWebhookConfig ? "Hide webhook config" : "Configure webhook URL"}
-          </button>
-          
-          {showWebhookConfig && (
-            <div className="mt-2 space-y-2">
-              <Input
-                placeholder="Paste your Zapier webhook URL"
-                value={webhookUrl}
-                onChange={(e) => setWebhookUrl(e.target.value)}
-                className="text-xs"
-              />
-              <p className="text-xs text-gray-500">
-                Create a Zap with a Webhook trigger and connect it to Google Sheets
-              </p>
-            </div>
-          )}
-        </div>
+        
       </form>
       
       {/* Success Dialog with Contact Information */}
