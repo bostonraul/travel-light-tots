@@ -38,8 +38,8 @@ const VacationLifesaverSection = () => {
     { image: "/lovable-uploads/car%20seat%203.png", title: "Car Seats" },
     { image: "/lovable-uploads/stroller.JPG", title: "Strollers & Wagons" },
     { image: "/lovable-uploads/High%20Chair.JPG", title: "High Chairs" },
-    { image: "/lovable-uploads/babymonitor.JPG", title: "Toys, Books, & Games" },
-    { image: "/lovable-uploads/bassinet.png", title: "Bathing" },
+    { image: "/lovable-uploads/babymonitor.JPG", title: "Baby Monitors" },
+    { image: "/lovable-uploads/bassinet.png", title: "Bassinets" },
     { image: "/lovable-uploads/cb4f4aeb-cc4c-412f-8db5-bc35c9f52cbc.png", title: "Outdoor & Seasonal" },
     { image: "/lovable-uploads/cb4f4aeb-cc4c-412f-8db5-bc35c9f52cbc.png", title: "Bouncers & Swings" },
   ];
