@@ -40,8 +40,6 @@ const VacationLifesaverSection = () => {
     { image: "/lovable-uploads/High%20Chair.JPG", title: "High Chairs" },
     { image: "/lovable-uploads/babymonitor.JPG", title: "Baby Monitors" },
     { image: "/lovable-uploads/bassinet.png", title: "Bassinets" },
-    { image: "/lovable-uploads/cb4f4aeb-cc4c-412f-8db5-bc35c9f52cbc.png", title: "Outdoor & Seasonal" },
-    { image: "/lovable-uploads/cb4f4aeb-cc4c-412f-8db5-bc35c9f52cbc.png", title: "Bouncers & Swings" },
   ];
 
   return (
@@ -54,7 +52,7 @@ const VacationLifesaverSection = () => {
           </div>
         </div>
         
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4 mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
           {babyGear.map((item, index) => (
             <GearItem key={index} image={item.image} title={item.title} />
           ))}
