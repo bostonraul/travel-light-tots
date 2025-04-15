@@ -53,7 +53,7 @@ const TravelForm = () => {
           travel_date: format(date, 'PP'),
           destination,
           submitted_at: new Date().toISOString(),
-          cta: ctaLabel,
+          cta: "Tell Us Your Needs" // <-- Add this line,
         }),
       });
 
