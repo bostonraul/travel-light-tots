@@ -26,7 +26,7 @@ const TravelForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showDialog, setShowDialog] = useState(false);
 
-  const webhookUrl = "https://script.google.com/macros/s/YOUR_NEW_WEBHOOK_ID_HERE/exec"; // Replace this after generating new script
+  const webhookUrl = "https://script.google.com/macros/s/AKfycbwn-uEohSTftq6lBsx8woI2b2Fc0wWeO6TiEWK8Cootxf7s7ad3btV37UwSReI8dlpbFg/exec"; // Replace this after generating new script
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
