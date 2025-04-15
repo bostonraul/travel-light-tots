@@ -46,8 +46,8 @@ const VacationLifesaverSection = () => {
     <section className="py-16 px-4 bg-gradient-to-br from-white to-tots-blue/10">
       <div className="container mx-auto max-w-6xl">
         <div className="text-center mb-12">
-          <h2 className="text-2xl font-medium text-tots-blue mb-2">Your vacation lifesaver.</h2>
-          <div className="bg-blue-600 text-white py-2 px-6 rounded-md inline-block mb-6">
+          <h2 className="text-2xl font-medium text-black mb-2">Your vacation lifesaver.</h2>
+          <div className="bg-[#FFF6E5] text-black py-2 px-6 rounded-md inline-block mb-6">
             <h3 className="text-2xl font-bold">Baby Gear Delivered, Anywhere You Go.</h3>
           </div>
         </div>
