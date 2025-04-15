@@ -35,11 +35,11 @@ const FeatureCard = ({ icon, title, description }: FeatureCardProps) => (
 const VacationLifesaverSection = () => {
   const babyGear = [
     { image: "/lovable-uploads/Crib.JPG", title: "Cribs & Sleep" },
-    { image: "/lovable-uploads/cb4f4aeb-cc4c-412f-8db5-bc35c9f52cbc.png", title: "Car Seats" },
-    { image: "/lovable-uploads/AdobeStock_843393181_Preview.jpeg", title: "Strollers & Wagons" },
-    { image: "/lovable-uploads/AdobeStock_794780499_Preview.jpeg", title: "High Chairs" },
-    { image: "/lovable-uploads/cb4f4aeb-cc4c-412f-8db5-bc35c9f52cbc.png", title: "Toys, Books, & Games" },
-    { image: "/lovable-uploads/cb4f4aeb-cc4c-412f-8db5-bc35c9f52cbc.png", title: "Bathing" },
+    { image: "/lovable-uploads/car%20seat%203.png", title: "Car Seats" },
+    { image: "/lovable-uploads/stroller.JPG", title: "Strollers & Wagons" },
+    { image: "/lovable-uploads/High%20Chair.JPG", title: "High Chairs" },
+    { image: "/lovable-uploads/babymonitor.JPG", title: "Toys, Books, & Games" },
+    { image: "/lovable-uploads/bassinet.png", title: "Bathing" },
     { image: "/lovable-uploads/cb4f4aeb-cc4c-412f-8db5-bc35c9f52cbc.png", title: "Outdoor & Seasonal" },
     { image: "/lovable-uploads/cb4f4aeb-cc4c-412f-8db5-bc35c9f52cbc.png", title: "Bouncers & Swings" },
   ];
