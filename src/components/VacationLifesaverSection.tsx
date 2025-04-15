@@ -34,10 +34,10 @@ const FeatureCard = ({ icon, title, description }: FeatureCardProps) => (
 
 const VacationLifesaverSection = () => {
   const babyGear = [
-    { image: "/lovable-uploads/4a7b9b01-88cf-4c5b-bedc-98341f59b3bf.png", title: "Cribs & Sleep" },
+    { image: "/https://github.com/bostonraul/travel-light-tots/blob/main/public/lovable-uploads/AdobeStock_616253195_Preview.jpeg", title: "Cribs & Sleep" },
     { image: "/lovable-uploads/cb4f4aeb-cc4c-412f-8db5-bc35c9f52cbc.png", title: "Car Seats" },
-    { image: "/lovable-uploads/cb4f4aeb-cc4c-412f-8db5-bc35c9f52cbc.png", title: "Strollers & Wagons" },
-    { image: "/lovable-uploads/cb4f4aeb-cc4c-412f-8db5-bc35c9f52cbc.png", title: "High Chairs" },
+    { image: "/https://github.com/bostonraul/travel-light-tots/blob/main/public/lovable-uploads/AdobeStock_843393181_Preview.jpeg", title: "Strollers & Wagons" },
+    { image: "/https://github.com/bostonraul/travel-light-tots/blob/main/public/lovable-uploads/AdobeStock_794780499_Preview.jpeg", title: "High Chairs" },
     { image: "/lovable-uploads/cb4f4aeb-cc4c-412f-8db5-bc35c9f52cbc.png", title: "Toys, Books, & Games" },
     { image: "/lovable-uploads/cb4f4aeb-cc4c-412f-8db5-bc35c9f52cbc.png", title: "Bathing" },
     { image: "/lovable-uploads/cb4f4aeb-cc4c-412f-8db5-bc35c9f52cbc.png", title: "Outdoor & Seasonal" },
