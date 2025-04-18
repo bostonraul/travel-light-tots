@@ -75,12 +75,12 @@ const FeatureCard = ({ icon, title, description, index }: FeatureCardProps) => {
 
 const VacationLifesaverSection = () => {
   const babyGear = [
-    { image: "https://lovable-uploads.s3.amazonaws.com/Crib.JPG", title: "Cribs & Sleep" },
-    { image: "https://lovable-uploads.s3.amazonaws.com/Carseat.JPG", title: "Car Seats" },
-    { image: "https://lovable-uploads.s3.amazonaws.com/stroller.JPG", title: "Strollers & Wagons" },
-    { image: "https://lovable-uploads.s3.amazonaws.com/High Chair.JPG", title: "High Chairs" },
-    { image: "https://lovable-uploads.s3.amazonaws.com/babymonitor.JPG", title: "Baby Monitors" },
-    { image: "https://lovable-uploads.s3.amazonaws.com/bassinet.png", title: "Bassinets" },
+    { image: "/lovable-uploads/Crib.JPG", title: "Cribs & Sleep" },
+    { image: "/lovable-uploads/Carseat.JPG", title: "Car Seats" },
+    { image: "/lovable-uploads/stroller.JPG", title: "Strollers & Wagons" },
+    { image: "/lovable-uploads/High Chair.JPG", title: "High Chairs" },
+    { image: "/lovable-uploads/babymonitor.JPG", title: "Baby Monitors" },
+    { image: "/lovable-uploads/bassinet.png", title: "Bassinets" },
   ];
 
   const sectionRef = useRef<HTMLElement>(null);
