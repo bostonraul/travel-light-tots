@@ -28,6 +28,7 @@ const TravelForm: React.FC<TravelFormProps> = ({ onSubmitSuccess }) => {
   const [destination, setDestination] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showDialog, setShowDialog] = useState(false);
+  const [calendarOpen, setCalendarOpen] = useState(false);
 
   const webhookUrl = "https://script.google.com/macros/s/AKfycbwn-uEohSTftq6lBsx8woI2b2Fc0wWeO6TiEWK8Cootxf7s7ad3btV37UwSReI8dlpbFg/exec";
 
@@ -109,6 +110,11 @@ const TravelForm: React.FC<TravelFormProps> = ({ onSubmitSuccess }) => {
     }
   };
 
+  const handleDateSelect = (selectedDate: Date | undefined) => {
+    setDate(selectedDate);
+    setCalendarOpen(false);
+  };
+
   return (
     <>
       <form onSubmit={(e) => handleSubmit(e, "Tell us your needs")} className="space-y-4">
@@ -116,7 +122,7 @@ const TravelForm: React.FC<TravelFormProps> = ({ onSubmitSuccess }) => {
           <label htmlFor="travel-date" className="block text-sm font-medium text-gray-700">
             When are you traveling?
           </label>
-          <Popover>
+          <Popover open={calendarOpen} onOpenChange={setCalendarOpen}>
             <PopoverTrigger asChild>
               <Button
                 id="travel-date"
@@ -134,7 +140,7 @@ const TravelForm: React.FC<TravelFormProps> = ({ onSubmitSuccess }) => {
               <Calendar
                 mode="single"
                 selected={date}
-                onSelect={setDate}
+                onSelect={handleDateSelect}
                 initialFocus
                 disabled={(d) => d < new Date()}
               />

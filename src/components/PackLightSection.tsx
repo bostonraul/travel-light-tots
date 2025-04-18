@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Check, Baby } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -41,10 +40,10 @@ const PackLightSection = () => {
                 "Support local family businesses"
               ].map((item, index) => (
                 <li key={index} className="flex items-start">
-                  <div className="mr-2 mt-1 bg-tots-green/30 p-1 rounded-full">
+                  <div className="mr-2 mt-1.5 bg-tots-green/30 p-1 rounded-full flex-shrink-0">
                     <Check className="h-4 w-4 text-green-600" />
                   </div>
-                  <span>{item}</span>
+                  <span className="text-gray-700">{item}</span>
                 </li>
               ))}
             </ul>
