@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import TravelForm from '@/components/TravelForm';
 import BenefitsSection from '@/components/BenefitsSection';
+import VacationLifesaverSection from '@/components/VacationLifesaverSection';
 import ReadyToTravelSection from '@/components/ReadyToTravelSection';
 
 const LandingPage = () => {
@@ -50,6 +51,9 @@ const LandingPage = () => {
         onBookClick={handleBookGearClick}
         isLoading={isLoading}
       />
+
+      {/* Vacation Lifesaver Section */}
+      <VacationLifesaverSection />
 
       {/* Ready to Travel Section */}
       <ReadyToTravelSection 

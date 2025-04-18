@@ -51,6 +51,7 @@ const TravelForm: React.FC<TravelFormProps> = ({ onSubmitSuccess }) => {
         headers: {
           "Content-Type": "application/json",
         },
+        mode: "no-cors",
         body: JSON.stringify({
           travel_date: format(date, 'PP'),
           destination: destination.trim(),
@@ -58,10 +59,6 @@ const TravelForm: React.FC<TravelFormProps> = ({ onSubmitSuccess }) => {
           cta: ctaType,
         }),
       });
-
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
 
       setShowDialog(true);
       // Reset form
