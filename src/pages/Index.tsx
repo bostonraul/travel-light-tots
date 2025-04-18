@@ -12,26 +12,25 @@ const LandingPage = () => {
   const logButtonClick = async (ctaType: string) => {
     try {
       const currentTime = new Date().toISOString();
-      const requestData = {
+      const params = new URLSearchParams({
         travel_date: "",
         destination: "",
         submitted_at: currentTime,
         cta: ctaType
-      };
-
-      // Log the exact data being sent
-      console.log('Sending button click data:', JSON.stringify(requestData, null, 2));
-
-      const response = await fetch(webhookUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        mode: "no-cors", // Important: Use no-cors mode
-        body: JSON.stringify(requestData),
       });
 
-      // In no-cors mode, we can't read the response, but we can log that the request was sent
+      // Log the exact data being sent
+      console.log('Sending button click data:', Object.fromEntries(params.entries()));
+
+      // Append parameters to URL
+      const urlWithParams = `${webhookUrl}?${params.toString()}`;
+      console.log('Request URL:', urlWithParams);
+
+      const response = await fetch(urlWithParams, {
+        method: "GET",
+        mode: "no-cors",
+      });
+
       console.log('Request sent successfully');
 
     } catch (error) {
