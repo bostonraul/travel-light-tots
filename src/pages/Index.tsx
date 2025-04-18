@@ -59,17 +59,35 @@ const LandingPage = () => {
       {/* Hero Section with Form */}
       <section className="py-16 px-4 bg-gradient-to-br from-white to-tots-peach/10">
         <div className="container mx-auto max-w-6xl">
-          <div className="flex flex-col md:flex-row items-center gap-12">
+          <div className="flex flex-col md:flex-row items-start gap-12">
+            {/* Left Column - Text Content */}
             <div className="w-full md:w-1/2 space-y-6">
-              <h1 className="text-4xl md:text-5xl font-bold">
-                Where are you heading with your little one?
-              </h1>
-              <p className="text-xl text-gray-600">
-                Travel light and stress-free with our baby gear rental service.
+              <div className="space-y-2">
+                <h1 className="text-4xl md:text-6xl font-bold text-gray-900">
+                  Baby on board?
+                </h1>
+                <h2 className="text-4xl md:text-5xl font-medium text-tots-peach">
+                  Travel light!
+                </h2>
+              </div>
+              <p className="text-xl text-gray-600 leading-relaxed">
+                Just tell us your gear needs, and we'll handle the rest. 
+                Enjoy your family vacation without lugging around bulky baby equipment.
               </p>
+              <div id="travel-form" className="pt-6">
+                <TravelForm />
+              </div>
             </div>
-            <div id="travel-form" className="w-full md:w-1/2">
-              <TravelForm />
+            
+            {/* Right Column - Image */}
+            <div className="w-full md:w-1/2">
+              <div className="relative rounded-2xl overflow-hidden shadow-xl">
+                <img 
+                  src="/lovable-uploads/car-seat-installation.jpeg"
+                  alt="Parent installing a car seat"
+                  className="w-full h-auto object-cover"
+                />
+              </div>
             </div>
           </div>
         </div>
