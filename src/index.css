@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -108,4 +107,42 @@
   .btn-primary {
     @apply bg-gradient-to-r from-tots-peach to-tots-yellow text-primary-foreground font-medium px-6 py-3 rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1;
   }
+}
+
+/* Swiper Styles */
+.swiper {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 300px;
+  height: 300px;
+  filter: blur(2px);
+  transition: all 0.3s ease;
+}
+
+.swiper-slide-active {
+  filter: blur(0);
+  transform: scale(1.1);
+}
+
+.swiper-pagination {
+  position: relative;
+  margin-top: 20px;
+}
+
+.swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background: #FFF6E5;
+  opacity: 0.5;
+}
+
+.swiper-pagination-bullet-active {
+  background: #FFF6E5;
+  opacity: 1;
 }

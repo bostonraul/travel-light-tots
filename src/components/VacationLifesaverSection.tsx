@@ -1,6 +1,13 @@
-
 import React from 'react';
 import { ArrowRight, Shield, Clock, HandHeart, Moon } from 'lucide-react';
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/pagination';
+// Import required modules
+import { EffectCoverflow, Pagination, Autoplay } from 'swiper/modules';
 
 interface GearItemProps {
   image: string;
@@ -9,10 +16,10 @@ interface GearItemProps {
 
 const GearItem = ({ image, title }: GearItemProps) => (
   <div className="flex flex-col items-center">
-    <div className="bg-white rounded-xl shadow-md p-4 mb-3 w-32 h-32 flex items-center justify-center">
+    <div className="bg-white rounded-xl shadow-md p-4 mb-3 w-full aspect-square flex items-center justify-center">
       <img src={image} alt={title} className="max-w-full max-h-full object-contain" />
     </div>
-    <p className="text-center text-sm font-medium">{title}</p>
+    <p className="text-center text-sm font-medium mt-4">{title}</p>
   </div>
 );
 
@@ -52,10 +59,33 @@ const VacationLifesaverSection = () => {
           </div>
         </div>
         
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
-          {babyGear.map((item, index) => (
-            <GearItem key={index} image={item.image} title={item.title} />
-          ))}
+        <div className="mb-16">
+          <Swiper
+            effect={'coverflow'}
+            grabCursor={true}
+            centeredSlides={true}
+            slidesPerView={'auto'}
+            coverflowEffect={{
+              rotate: 50,
+              stretch: 0,
+              depth: 100,
+              modifier: 1,
+              slideShadows: true,
+            }}
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
+            }}
+            pagination={true}
+            modules={[EffectCoverflow, Pagination, Autoplay]}
+            className="w-full py-12"
+          >
+            {babyGear.map((item, index) => (
+              <SwiperSlide key={index} className="w-64 sm:w-72">
+                <GearItem image={item.image} title={item.title} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
