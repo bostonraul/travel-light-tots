@@ -65,6 +65,7 @@ const TravelForm: React.FC<TravelFormProps> = ({ onSubmitSuccess }) => {
     setIsLoading(true);
 
     try {
+      const currentTime = new Date().toISOString();
       await fetch(webhookUrl, {
         method: "POST",
         headers: {
@@ -72,10 +73,11 @@ const TravelForm: React.FC<TravelFormProps> = ({ onSubmitSuccess }) => {
         },
         mode: "no-cors",
         body: JSON.stringify({
-          travel_date: format(date, 'PP'),
-          destination: destination.trim(),
-          submitted_at: new Date().toISOString(),
-          cta_clicked: ctaType, // Changed to match sheet column name
+          Timestamp: currentTime,
+          "Travel Date": format(date, 'PP'),
+          Destination: destination.trim(),
+          "Submitted At": currentTime,
+          "CTA Clicked": ctaType
         }),
       });
 

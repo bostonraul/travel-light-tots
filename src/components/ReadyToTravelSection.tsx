@@ -13,10 +13,15 @@ const ReadyToTravelSection: React.FC<ReadyToTravelSectionProps> = ({
   onButtonClick 
 }) => {
   const handleClick = async () => {
-    if (onButtonClick) {
-      await onButtonClick("Plan your trip");
+    try {
+      console.log('Ready to Travel button clicked'); // Debug log
+      if (onButtonClick) {
+        await onButtonClick("Plan your trip");
+      }
+      onPlanClick();
+    } catch (error) {
+      console.error('Error in handleClick:', error);
     }
-    onPlanClick();
   };
 
   return (

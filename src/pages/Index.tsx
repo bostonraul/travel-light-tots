@@ -11,17 +11,23 @@ const LandingPage = () => {
 
   const logButtonClick = async (ctaType: string) => {
     try {
-      await fetch(webhookUrl, {
+      console.log('Logging button click:', ctaType); // Debug log
+      const currentTime = new Date().toISOString();
+      const response = await fetch(webhookUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         mode: "no-cors",
         body: JSON.stringify({
-          submitted_at: new Date().toISOString(),
-          cta_clicked: ctaType,
+          Timestamp: currentTime,
+          "Travel Date": "",
+          Destination: "",
+          "Submitted At": currentTime,
+          "CTA Clicked": ctaType
         }),
       });
+      console.log('Button click logged:', response); // Debug log
     } catch (error) {
       console.error("Error logging button click:", error);
     }

@@ -21,10 +21,15 @@ const BenefitsSection: React.FC<BenefitsSectionProps> = ({
   ];
 
   const handleClick = async () => {
-    if (onButtonClick) {
-      await onButtonClick("Book your baby gear");
+    try {
+      console.log('Benefits button clicked'); // Debug log
+      if (onButtonClick) {
+        await onButtonClick("Book your baby gear");
+      }
+      onBookClick();
+    } catch (error) {
+      console.error('Error in handleClick:', error);
     }
-    onBookClick();
   };
 
   return (
