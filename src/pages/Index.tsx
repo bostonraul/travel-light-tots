@@ -63,7 +63,7 @@ const LandingPage = () => {
             {/* Left Column - Text Content */}
             <div className="w-full md:w-1/2 space-y-6">
               <div className="space-y-2">
-                <h1 className="text-4xl md:text-6xl font-bold text-gray-900">
+                <h1 className="text-5xl md:text-7xl font-bold text-gray-900">
                   Baby on board?
                 </h1>
                 <h2 className="text-4xl md:text-5xl font-medium text-tots-peach">
