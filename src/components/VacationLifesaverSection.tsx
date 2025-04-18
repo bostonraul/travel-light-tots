@@ -78,7 +78,7 @@ const VacationLifesaverSection = () => {
     { image: "/lovable-uploads/Crib.JPG", title: "Cribs & Sleep" },
     { image: "/lovable-uploads/Carseat.JPG", title: "Car Seats" },
     { image: "/lovable-uploads/stroller.JPG", title: "Strollers & Wagons" },
-    { image: "/lovable-uploads/Highchairs.JPG", title: "High Chairs" },
+    { image: "/lovable-uploads/High Chair.JPG", title: "High Chairs" },
     { image: "/lovable-uploads/babymonitor.JPG", title: "Baby Monitors" },
     { image: "/lovable-uploads/bassinet.png", title: "Bassinets" },
   ];

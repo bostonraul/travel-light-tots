@@ -110,66 +110,76 @@ const TravelForm: React.FC<TravelFormProps> = ({ onSubmitSuccess }) => {
   };
 
   return (
-    <>
-      <form onSubmit={(e) => handleSubmit(e, "Tell us your needs")} className="space-y-4">
-        <div className="space-y-2">
-          <label htmlFor="travel-date" className="block text-sm font-medium text-gray-700">
-            When are you traveling?
-          </label>
-          <Popover>
-            <PopoverTrigger asChild>
-              <Button
-                id="travel-date"
-                variant={"outline"}
-                className={cn(
-                  "w-full justify-start text-left font-normal border-gray-300 hover:bg-gray-50",
-                  !date && "text-muted-foreground"
-                )}
-              >
-                <CalendarIcon className="mr-2 h-4 w-4" />
-                {date ? format(date, 'PPP') : <span>Select your travel date</span>}
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-auto p-0" align="start">
-              <Calendar
-                mode="single"
-                selected={date}
-                onSelect={setDate}
-                initialFocus
-                disabled={(d) => d < new Date()}
-              />
-            </PopoverContent>
-          </Popover>
+    <div className="min-h-screen bg-gradient-to-br from-tots-cream via-tots-sand to-tots-caramel flex items-center justify-center p-4">
+      <div className="max-w-4xl w-full">
+        <div className="text-center mb-12">
+          <h1 className="text-4xl md:text-5xl font-bold text-tots-chocolate mb-6">
+            Travel Light, Travel Smart
+          </h1>
+          <p className="text-lg text-tots-mocha">
+            Rent baby gear for your next trip and enjoy stress-free travel with your little ones.
+          </p>
         </div>
+        <form onSubmit={(e) => handleSubmit(e, "Tell us your needs")} className="space-y-4">
+          <div className="space-y-2">
+            <label htmlFor="travel-date" className="block text-sm font-medium text-gray-700">
+              When are you traveling?
+            </label>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  id="travel-date"
+                  variant={"outline"}
+                  className={cn(
+                    "w-full justify-start text-left font-normal border-gray-300 hover:bg-gray-50",
+                    !date && "text-muted-foreground"
+                  )}
+                >
+                  <CalendarIcon className="mr-2 h-4 w-4" />
+                  {date ? format(date, 'PPP') : <span>Select your travel date</span>}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0" align="start">
+                <Calendar
+                  mode="single"
+                  selected={date}
+                  onSelect={setDate}
+                  initialFocus
+                  disabled={(d) => d < new Date()}
+                />
+              </PopoverContent>
+            </Popover>
+          </div>
 
-        <div className="space-y-2">
-          <label htmlFor="destination" className="block text-sm font-medium text-gray-700">
-            Where are you headed?
-          </label>
-          <Input
-            id="destination"
-            placeholder="Enter your destination"
-            className="w-full border-gray-300"
-            value={destination}
-            onChange={(e) => setDestination(e.target.value)}
-          />
-        </div>
+          <div className="space-y-2">
+            <label htmlFor="destination" className="block text-sm font-medium text-gray-700">
+              Where are you headed?
+            </label>
+            <Input
+              id="destination"
+              placeholder="Enter your destination"
+              className="w-full border-gray-300"
+              value={destination}
+              onChange={(e) => setDestination(e.target.value)}
+            />
+          </div>
 
-        <Button
-          type="submit"
-          disabled={isLoading}
-          className="w-full bg-[#FFF6E9] text-black font-medium rounded-full py-6 text-lg transition-all hover:shadow-md relative"
-        >
-          {isLoading ? (
-            <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Submitting...
-            </>
-          ) : (
-            "Tell Us Your Needs & Travel Light!"
-          )}
-        </Button>
-      </form>
+          <Button
+            type="submit"
+            disabled={isLoading}
+            className="w-full bg-[#FFF6E9] text-black font-medium rounded-full py-6 text-lg transition-all hover:shadow-md relative"
+          >
+            {isLoading ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Submitting...
+              </>
+            ) : (
+              "Tell Us Your Needs & Travel Light!"
+            )}
+          </Button>
+        </form>
+      </div>
 
       <Dialog open={showDialog} onOpenChange={setShowDialog}>
         <DialogContent className="sm:max-w-md">
@@ -186,7 +196,7 @@ const TravelForm: React.FC<TravelFormProps> = ({ onSubmitSuccess }) => {
           </div>
         </DialogContent>
       </Dialog>
-    </>
+    </div>
   );
 };
 
