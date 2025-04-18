@@ -26,26 +26,13 @@ const LandingPage = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Accept": "application/json"
         },
+        mode: "no-cors", // Important: Use no-cors mode
         body: JSON.stringify(requestData),
       });
 
-      // Log the response details
-      console.log('Response status:', response.status);
-      console.log('Response type:', response.type);
-
-      // Try to read the response text
-      const text = await response.text();
-      console.log('Response text:', text);
-
-      // Try to parse the response as JSON
-      try {
-        const json = JSON.parse(text);
-        console.log('Parsed response:', json);
-      } catch (e) {
-        console.log('Response is not JSON:', text);
-      }
+      // In no-cors mode, we can't read the response, but we can log that the request was sent
+      console.log('Request sent successfully');
 
     } catch (error) {
       console.error("Error in logButtonClick:", error);
