@@ -1,67 +1,41 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import TravelForm from './TravelForm';
 import BenefitsSection from './BenefitsSection';
 import VacationLifesaverSection from './VacationLifesaverSection';
 import ReadyToTravelSection from './ReadyToTravelSection';
-import '../styles/swiper.css';
+import '../styles/vertical-scroll.css';
 
 interface VerticalSliderProps {
-  onBookClick: () => void;
   onPlanClick: () => void;
   onButtonClick: (cta: string) => void;
 }
 
-declare global {
-  interface Window {
-    Swiper: any;
-  }
-}
-
-const VerticalSlider: React.FC<VerticalSliderProps> = ({
-  onBookClick,
-  onPlanClick,
-  onButtonClick,
-}) => {
-  const swiperRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (swiperRef.current && window.Swiper) {
-      const swiper = new window.Swiper(swiperRef.current, {
-        direction: 'vertical',
-        slidesPerView: 1,
-        spaceBetween: 0,
-        mousewheel: true,
-        pagination: {
-          el: '.swiper-pagination',
-          clickable: true,
-        },
-        speed: 800,
-        on: {
-          init: function() {
-            console.log('Swiper initialized');
-          },
-        },
-      });
-    }
-  }, []);
-
+const VerticalSlider: React.FC<VerticalSliderProps> = ({ onPlanClick, onButtonClick }) => {
   return (
-    <div className="swiper-container" ref={swiperRef}>
-      <div className="swiper-wrapper">
-        <div className="swiper-slide">
-          <TravelForm onBookClick={onBookClick} onButtonClick={onButtonClick} />
+    <div className="vertical-scroll-container">
+      <section className="section">
+        <div className="section-content">
+          <TravelForm onPlanClick={onPlanClick} onButtonClick={onButtonClick} />
         </div>
-        <div className="swiper-slide">
-          <BenefitsSection onBookClick={onBookClick} onButtonClick={onButtonClick} />
+      </section>
+      
+      <section className="section">
+        <div className="section-content">
+          <BenefitsSection onButtonClick={onButtonClick} />
         </div>
-        <div className="swiper-slide">
-          <VacationLifesaverSection />
+      </section>
+      
+      <section className="section">
+        <div className="section-content">
+          <VacationLifesaverSection onButtonClick={onButtonClick} />
         </div>
-        <div className="swiper-slide">
+      </section>
+      
+      <section className="section">
+        <div className="section-content">
           <ReadyToTravelSection onPlanClick={onPlanClick} onButtonClick={onButtonClick} />
         </div>
-      </div>
-      <div className="swiper-pagination"></div>
+      </section>
     </div>
   );
 };
