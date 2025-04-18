@@ -19,16 +19,19 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 
-const TravelForm = () => {
+interface TravelFormProps {
+  onSubmitSuccess?: () => void;
+}
+
+const TravelForm: React.FC<TravelFormProps> = ({ onSubmitSuccess }) => {
   const [date, setDate] = useState<Date>();
   const [destination, setDestination] = useState('');
-  const [ctaLabel, setCtaLabel] = useState('Tell us your needs'); // Default CTA
   const [isLoading, setIsLoading] = useState(false);
   const [showDialog, setShowDialog] = useState(false);
 
-  const webhookUrl = "https://script.google.com/macros/s/AKfycbwn-uEohSTftq6lBsx8woI2b2Fc0wWeO6TiEWK8Cootxf7s7ad3btV37UwSReI8dlpbFg/exec"; // Replace this after generating new script
+  const webhookUrl = "https://script.google.com/macros/s/AKfycbwn-uEohSTftq6lBsx8woI2b2Fc0wWeO6TiEWK8Cootxf7s7ad3btV37UwSReI8dlpbFg/exec";
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent, ctaType: string) => {
     e.preventDefault();
 
     if (!date || !destination.trim()) {
@@ -43,27 +46,39 @@ const TravelForm = () => {
     setIsLoading(true);
 
     try {
-      await fetch(webhookUrl, {
+      const response = await fetch(webhookUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        mode: "no-cors",
         body: JSON.stringify({
           travel_date: format(date, 'PP'),
-          destination,
+          destination: destination.trim(),
           submitted_at: new Date().toISOString(),
-          cta: "Tell Us Your Needs" // <-- Add this line,
+          cta: ctaType,
         }),
       });
 
-      console.log("Submitted with CTA:", ctaLabel);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
       setShowDialog(true);
+      // Reset form
+      setDate(undefined);
+      setDestination('');
+      
+      toast({
+        title: "Success!",
+        description: "We've received your request.",
+      });
+
+      onSubmitSuccess?.();
     } catch (error) {
       console.error("Submission error:", error);
       toast({
         title: "Something went wrong",
-        description: "Please try again or contact us.",
+        description: "Please try again or contact us directly.",
         variant: "destructive",
       });
     } finally {
@@ -73,7 +88,7 @@ const TravelForm = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={(e) => handleSubmit(e, "Tell us your needs")} className="space-y-4">
         <div className="space-y-2">
           <label htmlFor="travel-date" className="block text-sm font-medium text-gray-700">
             When are you traveling?
@@ -117,34 +132,20 @@ const TravelForm = () => {
           />
         </div>
 
-        <div className="grid gap-3">
-          <Button
-            type="submit"
-            disabled={isLoading}
-            onClick={() => setCtaLabel("Tell us your needs")}
-            className="w-full bg-[#FFF6E9] text-black font-medium rounded-full py-6 text-lg transition-all hover:shadow-md"
-          >
-            {isLoading ? "Submitting..." : "Tell Us Your Needs & Travel Light!"}
-          </Button>
-
-          <Button
-            type="submit"
-            disabled={isLoading}
-            onClick={() => setCtaLabel("Book your baby gear")}
-            className="w-full bg-black text-white font-medium rounded-full py-6 text-lg transition-all hover:shadow-md"
-          >
-            {isLoading ? "Submitting..." : "Book Your Baby Gear Now"}
-          </Button>
-
-          <Button
-            type="submit"
-            disabled={isLoading}
-            onClick={() => setCtaLabel("Plan your trip")}
-            className="w-full bg-white border border-black text-black font-medium rounded-full py-6 text-lg transition-all hover:shadow-md"
-          >
-            {isLoading ? "Submitting..." : "Plan Your Trip Now"}
-          </Button>
-        </div>
+        <Button
+          type="submit"
+          disabled={isLoading}
+          className="w-full bg-[#FFF6E9] text-black font-medium rounded-full py-6 text-lg transition-all hover:shadow-md relative"
+        >
+          {isLoading ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Submitting...
+            </>
+          ) : (
+            "Tell Us Your Needs & Travel Light!"
+          )}
+        </Button>
       </form>
 
       <Dialog open={showDialog} onOpenChange={setShowDialog}>
