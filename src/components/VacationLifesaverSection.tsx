@@ -1,4 +1,3 @@
-
 import React, { useRef, useEffect } from 'react';
 import { ArrowRight, Shield, Clock, HandHeart, Moon } from 'lucide-react';
 
@@ -20,7 +19,7 @@ const GearItem = ({ image, title, index }: GearItemProps) => (
     <div className="relative group">
       <div className="absolute inset-0 bg-gradient-to-br from-tots-chocolate via-tots-caramel to-tots-cream rounded-xl transform rotate-6 scale-105 opacity-0 group-hover:opacity-20 transition-all duration-300"></div>
       <div className="bg-white rounded-xl shadow-lg p-4 mb-3 w-36 h-36 flex items-center justify-center transform transition-transform duration-300 hover:translate-y-[-5px]">
-        <img src={`/lovable-uploads/${image}`} alt={title} className="max-w-full max-h-full object-contain" />
+        <img src={image} alt={title} className="max-w-full max-h-full object-contain" />
       </div>
     </div>
     <p className="text-center text-sm font-medium text-tots-chocolate mt-3">{title}</p>
@@ -76,12 +75,12 @@ const FeatureCard = ({ icon, title, description, index }: FeatureCardProps) => {
 
 const VacationLifesaverSection = () => {
   const babyGear = [
-    { image: "Crib.JPG", title: "Cribs & Sleep" },
-    { image: "Carseat.JPG", title: "Car Seats" },
-    { image: "stroller.JPG", title: "Strollers & Wagons" },
-    { image: "High Chair.JPG", title: "High Chairs" },
-    { image: "babymonitor.JPG", title: "Baby Monitors" },
-    { image: "bassinet.png", title: "Bassinets" },
+    { image: "https://lovable-uploads.s3.amazonaws.com/Crib.JPG", title: "Cribs & Sleep" },
+    { image: "https://lovable-uploads.s3.amazonaws.com/Carseat.JPG", title: "Car Seats" },
+    { image: "https://lovable-uploads.s3.amazonaws.com/stroller.JPG", title: "Strollers & Wagons" },
+    { image: "https://lovable-uploads.s3.amazonaws.com/High Chair.JPG", title: "High Chairs" },
+    { image: "https://lovable-uploads.s3.amazonaws.com/babymonitor.JPG", title: "Baby Monitors" },
+    { image: "https://lovable-uploads.s3.amazonaws.com/bassinet.png", title: "Bassinets" },
   ];
 
   const sectionRef = useRef<HTMLElement>(null);
