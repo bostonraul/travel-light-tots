@@ -3,6 +3,7 @@ import TravelForm from '@/components/TravelForm';
 import BenefitsSection from '@/components/BenefitsSection';
 import VacationLifesaverSection from '@/components/VacationLifesaverSection';
 import ReadyToTravelSection from '@/components/ReadyToTravelSection';
+import WhyTravelLightSection from '@/components/WhyTravelLightSection';
 
 const LandingPage = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -92,6 +93,9 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
+
+      {/* Why Travel Light Section */}
+      <WhyTravelLightSection />
 
       {/* Benefits Section */}
       <BenefitsSection 
