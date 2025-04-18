@@ -158,7 +158,7 @@ const TravelForm: React.FC<TravelFormProps> = ({ onSubmitSuccess }) => {
         <Button
           type="submit"
           disabled={isLoading}
-          className="w-full bg-[#FFF6E9] text-black font-medium rounded-full py-6 text-lg transition-all hover:shadow-md relative"
+          className="w-full bg-gradient-to-r from-tots-peach to-tots-yellow text-primary-foreground font-medium rounded-full py-6 text-lg transition-all hover:shadow-lg hover:-translate-y-1 relative"
         >
           {isLoading ? (
             <>

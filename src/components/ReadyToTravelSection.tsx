@@ -34,7 +34,7 @@ const ReadyToTravelSection: React.FC<ReadyToTravelSectionProps> = ({
         <Button
           onClick={handleClick}
           disabled={isLoading}
-          className="bg-white border border-black text-black font-medium rounded-full py-6 px-8 text-lg transition-all hover:shadow-md"
+          className="bg-gradient-to-r from-tots-peach to-tots-yellow text-primary-foreground font-medium rounded-full py-6 px-8 text-lg transition-all hover:shadow-lg hover:-translate-y-1"
         >
           Plan Your Trip Now
         </Button>
