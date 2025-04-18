@@ -26,7 +26,7 @@ const VerticalSlider: React.FC<VerticalSliderProps> = ({
 
   useEffect(() => {
     if (swiperRef.current && window.Swiper) {
-      new window.Swiper(swiperRef.current, {
+      const swiper = new window.Swiper(swiperRef.current, {
         direction: 'vertical',
         slidesPerView: 1,
         spaceBetween: 0,
@@ -36,6 +36,11 @@ const VerticalSlider: React.FC<VerticalSliderProps> = ({
           clickable: true,
         },
         speed: 800,
+        on: {
+          init: function() {
+            console.log('Swiper initialized');
+          },
+        },
       });
     }
   }, []);
