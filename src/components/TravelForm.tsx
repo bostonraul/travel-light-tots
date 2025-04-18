@@ -34,16 +34,19 @@ const TravelForm: React.FC<TravelFormProps> = ({ onSubmitSuccess }) => {
   // Function to log button clicks without form data
   const logButtonClick = async (ctaType: string) => {
     try {
-      await fetch(webhookUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+      const params = new URLSearchParams({
+        travel_date: "",
+        destination: "",
+        submitted_at: new Date().toISOString(),
+        cta: ctaType
+      });
+
+      const urlWithParams = `${webhookUrl}?${params.toString()}`;
+      console.log('Request URL:', urlWithParams);
+
+      await fetch(urlWithParams, {
+        method: "GET",
         mode: "no-cors",
-        body: JSON.stringify({
-          submitted_at: new Date().toISOString(),
-          cta_clicked: ctaType, // Changed to match sheet column name
-        }),
       });
     } catch (error) {
       console.error("Error logging button click:", error);
@@ -66,41 +69,22 @@ const TravelForm: React.FC<TravelFormProps> = ({ onSubmitSuccess }) => {
 
     try {
       const currentTime = new Date().toISOString();
-      const requestData = {
+      const params = new URLSearchParams({
         travel_date: format(date, 'PP'),
         destination: destination.trim(),
         submitted_at: currentTime,
         cta: ctaType
-      };
-
-      console.log('Sending form data to webhook:', {
-        url: webhookUrl,
-        data: requestData
       });
 
-      const response = await fetch(webhookUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+      const urlWithParams = `${webhookUrl}?${params.toString()}`;
+      console.log('Request URL:', urlWithParams);
+
+      const response = await fetch(urlWithParams, {
+        method: "GET",
         mode: "no-cors",
-        body: JSON.stringify(requestData),
       });
 
-      console.log('Webhook response:', {
-        status: response.status,
-        statusText: response.statusText,
-        type: response.type,
-        url: response.url
-      });
-
-      // Try to read the response text
-      try {
-        const text = await response.text();
-        console.log('Response text:', text);
-      } catch (e) {
-        console.log('Could not read response text (expected in no-cors mode)');
-      }
+      console.log('Request sent successfully');
 
       setShowDialog(true);
       // Reset form
