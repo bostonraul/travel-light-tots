@@ -36,11 +36,6 @@ const VerticalSlider: React.FC<VerticalSliderProps> = ({
           clickable: true,
         },
         speed: 800,
-        on: {
-          init: function() {
-            console.log('Swiper initialized');
-          },
-        },
       });
     }
   }, []);

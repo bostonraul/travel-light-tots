@@ -16,18 +16,6 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  transition: transform 0.8s ease-out, opacity 0.8s ease-out;
-}
-
-.swiper-slide-active {
-  transform: scale(1);
-  opacity: 1;
-}
-
-.swiper-slide-prev,
-.swiper-slide-next {
-  transform: scale(0.95);
-  opacity: 0.8;
 }
 
 .swiper-pagination {
@@ -51,7 +39,6 @@
 .swiper-pagination-bullet-active {
   background: #fff;
   transform: scale(1.2);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 /* Add subtle parallax effect */
