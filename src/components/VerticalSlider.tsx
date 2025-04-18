@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef } from 'react';
 import TravelForm from './TravelForm';
 import BenefitsSection from './BenefitsSection';
@@ -8,7 +9,7 @@ import '../styles/swiper.css';
 interface VerticalSliderProps {
   onBookClick: () => void;
   onPlanClick: () => void;
-  onButtonClick: (cta: string) => void;
+  onButtonClick: (cta: string) => Promise<void>;
 }
 
 declare global {
@@ -44,7 +45,7 @@ const VerticalSlider: React.FC<VerticalSliderProps> = ({
     <div className="swiper-container" ref={swiperRef}>
       <div className="swiper-wrapper">
         <div className="swiper-slide">
-          <TravelForm onBookClick={onBookClick} onButtonClick={onButtonClick} />
+          <TravelForm onSubmitSuccess={onBookClick} />
         </div>
         <div className="swiper-slide">
           <BenefitsSection onBookClick={onBookClick} onButtonClick={onButtonClick} />
@@ -61,4 +62,4 @@ const VerticalSlider: React.FC<VerticalSliderProps> = ({
   );
 };
 
-export default VerticalSlider; 
+export default VerticalSlider;

@@ -31,7 +31,6 @@ const TravelForm: React.FC<TravelFormProps> = ({ onSubmitSuccess }) => {
 
   const webhookUrl = "https://script.google.com/macros/s/AKfycbwn-uEohSTftq6lBsx8woI2b2Fc0wWeO6TiEWK8Cootxf7s7ad3btV37UwSReI8dlpbFg/exec";
 
-  // Function to log button clicks without form data
   const logButtonClick = async (ctaType: string) => {
     try {
       const params = new URLSearchParams({
@@ -87,7 +86,6 @@ const TravelForm: React.FC<TravelFormProps> = ({ onSubmitSuccess }) => {
       console.log('Request sent successfully');
 
       setShowDialog(true);
-      // Reset form
       setDate(undefined);
       setDestination('');
       
@@ -96,7 +94,9 @@ const TravelForm: React.FC<TravelFormProps> = ({ onSubmitSuccess }) => {
         description: "We've received your request.",
       });
 
-      onSubmitSuccess?.();
+      if (onSubmitSuccess) {
+        onSubmitSuccess();
+      }
     } catch (error) {
       console.error("Error in handleSubmit:", error);
       toast({
