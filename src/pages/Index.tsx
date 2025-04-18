@@ -19,33 +19,32 @@ const LandingPage = () => {
         cta: ctaType
       };
 
-      console.log('Sending data to webhook:', {
-        url: webhookUrl,
-        data: requestData
-      });
+      // Log the exact data being sent
+      console.log('Sending button click data:', JSON.stringify(requestData, null, 2));
 
       const response = await fetch(webhookUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Accept": "application/json"
         },
-        mode: "no-cors",
         body: JSON.stringify(requestData),
       });
 
-      console.log('Webhook response:', {
-        status: response.status,
-        statusText: response.statusText,
-        type: response.type,
-        url: response.url
-      });
+      // Log the response details
+      console.log('Response status:', response.status);
+      console.log('Response type:', response.type);
 
       // Try to read the response text
+      const text = await response.text();
+      console.log('Response text:', text);
+
+      // Try to parse the response as JSON
       try {
-        const text = await response.text();
-        console.log('Response text:', text);
+        const json = JSON.parse(text);
+        console.log('Parsed response:', json);
       } catch (e) {
-        console.log('Could not read response text (expected in no-cors mode)');
+        console.log('Response is not JSON:', text);
       }
 
     } catch (error) {
