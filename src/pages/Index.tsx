@@ -11,25 +11,45 @@ const LandingPage = () => {
 
   const logButtonClick = async (ctaType: string) => {
     try {
-      console.log('Logging button click:', ctaType); // Debug log
       const currentTime = new Date().toISOString();
+      const requestData = {
+        travel_date: "",
+        destination: "",
+        submitted_at: currentTime,
+        cta: ctaType
+      };
+
+      console.log('Sending data to webhook:', {
+        url: webhookUrl,
+        data: requestData
+      });
+
       const response = await fetch(webhookUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         mode: "no-cors",
-        body: JSON.stringify({
-          Timestamp: currentTime,
-          "Travel Date": "",
-          Destination: "",
-          "Submitted At": currentTime,
-          "CTA Clicked": ctaType
-        }),
+        body: JSON.stringify(requestData),
       });
-      console.log('Button click logged:', response); // Debug log
+
+      console.log('Webhook response:', {
+        status: response.status,
+        statusText: response.statusText,
+        type: response.type,
+        url: response.url
+      });
+
+      // Try to read the response text
+      try {
+        const text = await response.text();
+        console.log('Response text:', text);
+      } catch (e) {
+        console.log('Could not read response text (expected in no-cors mode)');
+      }
+
     } catch (error) {
-      console.error("Error logging button click:", error);
+      console.error("Error in logButtonClick:", error);
     }
   };
 

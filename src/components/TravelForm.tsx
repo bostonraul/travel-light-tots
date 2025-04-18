@@ -66,20 +66,41 @@ const TravelForm: React.FC<TravelFormProps> = ({ onSubmitSuccess }) => {
 
     try {
       const currentTime = new Date().toISOString();
-      await fetch(webhookUrl, {
+      const requestData = {
+        travel_date: format(date, 'PP'),
+        destination: destination.trim(),
+        submitted_at: currentTime,
+        cta: ctaType
+      };
+
+      console.log('Sending form data to webhook:', {
+        url: webhookUrl,
+        data: requestData
+      });
+
+      const response = await fetch(webhookUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         mode: "no-cors",
-        body: JSON.stringify({
-          Timestamp: currentTime,
-          "Travel Date": format(date, 'PP'),
-          Destination: destination.trim(),
-          "Submitted At": currentTime,
-          "CTA Clicked": ctaType
-        }),
+        body: JSON.stringify(requestData),
       });
+
+      console.log('Webhook response:', {
+        status: response.status,
+        statusText: response.statusText,
+        type: response.type,
+        url: response.url
+      });
+
+      // Try to read the response text
+      try {
+        const text = await response.text();
+        console.log('Response text:', text);
+      } catch (e) {
+        console.log('Could not read response text (expected in no-cors mode)');
+      }
 
       setShowDialog(true);
       // Reset form
@@ -93,7 +114,7 @@ const TravelForm: React.FC<TravelFormProps> = ({ onSubmitSuccess }) => {
 
       onSubmitSuccess?.();
     } catch (error) {
-      console.error("Submission error:", error);
+      console.error("Error in handleSubmit:", error);
       toast({
         title: "Something went wrong",
         description: "Please try again or contact us directly.",
