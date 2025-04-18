@@ -31,6 +31,25 @@ const TravelForm: React.FC<TravelFormProps> = ({ onSubmitSuccess }) => {
 
   const webhookUrl = "https://script.google.com/macros/s/AKfycbwn-uEohSTftq6lBsx8woI2b2Fc0wWeO6TiEWK8Cootxf7s7ad3btV37UwSReI8dlpbFg/exec";
 
+  // Function to log button clicks without form data
+  const logButtonClick = async (ctaType: string) => {
+    try {
+      await fetch(webhookUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        mode: "no-cors",
+        body: JSON.stringify({
+          submitted_at: new Date().toISOString(),
+          cta_clicked: ctaType, // Changed to match sheet column name
+        }),
+      });
+    } catch (error) {
+      console.error("Error logging button click:", error);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent, ctaType: string) => {
     e.preventDefault();
 
@@ -46,7 +65,7 @@ const TravelForm: React.FC<TravelFormProps> = ({ onSubmitSuccess }) => {
     setIsLoading(true);
 
     try {
-      const response = await fetch(webhookUrl, {
+      await fetch(webhookUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -56,7 +75,7 @@ const TravelForm: React.FC<TravelFormProps> = ({ onSubmitSuccess }) => {
           travel_date: format(date, 'PP'),
           destination: destination.trim(),
           submitted_at: new Date().toISOString(),
-          cta: ctaType,
+          cta_clicked: ctaType, // Changed to match sheet column name
         }),
       });
 

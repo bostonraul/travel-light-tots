@@ -5,9 +5,27 @@ import VacationLifesaverSection from '@/components/VacationLifesaverSection';
 import ReadyToTravelSection from '@/components/ReadyToTravelSection';
 
 const LandingPage = () => {
-  const [formDate, setFormDate] = useState<Date>();
-  const [formDestination, setFormDestination] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
+  const webhookUrl = "https://script.google.com/macros/s/AKfycbwn-uEohSTftq6lBsx8woI2b2Fc0wWeO6TiEWK8Cootxf7s7ad3btV37UwSReI8dlpbFg/exec";
+
+  const logButtonClick = async (ctaType: string) => {
+    try {
+      await fetch(webhookUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        mode: "no-cors",
+        body: JSON.stringify({
+          submitted_at: new Date().toISOString(),
+          cta_clicked: ctaType,
+        }),
+      });
+    } catch (error) {
+      console.error("Error logging button click:", error);
+    }
+  };
 
   const handleBookGearClick = () => {
     // Scroll to form
@@ -49,6 +67,7 @@ const LandingPage = () => {
       {/* Benefits Section */}
       <BenefitsSection 
         onBookClick={handleBookGearClick}
+        onButtonClick={logButtonClick}
         isLoading={isLoading}
       />
 
@@ -58,6 +77,7 @@ const LandingPage = () => {
       {/* Ready to Travel Section */}
       <ReadyToTravelSection 
         onPlanClick={handlePlanTripClick}
+        onButtonClick={logButtonClick}
         isLoading={isLoading}
       />
     </main>

@@ -5,15 +5,27 @@ import { Button } from '@/components/ui/button';
 interface BenefitsSectionProps {
   onBookClick: () => void;
   isLoading?: boolean;
+  onButtonClick?: (ctaType: string) => Promise<void>;
 }
 
-const BenefitsSection: React.FC<BenefitsSectionProps> = ({ onBookClick, isLoading }) => {
+const BenefitsSection: React.FC<BenefitsSectionProps> = ({ 
+  onBookClick, 
+  isLoading,
+  onButtonClick 
+}) => {
   const benefits = [
     'Save space in your car',
     'Clean, quality equipment',
     'Convenience that makes travel stress-free',
     'Support local family businesses'
   ];
+
+  const handleClick = async () => {
+    if (onButtonClick) {
+      await onButtonClick("Book your baby gear");
+    }
+    onBookClick();
+  };
 
   return (
     <section className="py-16 px-4 bg-gradient-to-r from-tots-yellow/20 to-tots-peach/20">
@@ -42,7 +54,7 @@ const BenefitsSection: React.FC<BenefitsSectionProps> = ({ onBookClick, isLoadin
             </ul>
             
             <Button
-              onClick={onBookClick}
+              onClick={handleClick}
               disabled={isLoading}
               className="w-full bg-black text-white font-medium rounded-full py-6 text-lg transition-all hover:shadow-md"
             >
