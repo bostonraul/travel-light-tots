@@ -6,22 +6,26 @@ const WhyTravelLightSection = () => {
     {
       icon: <Luggage className="w-8 h-8 text-tots-peach" />,
       title: "Travel Light",
-      description: "No more lugging around strollers, cribs, or car seats. Travel with just the essentials."
+      description: "No more lugging around strollers, cribs, or car seats. Travel with just the essentials.",
+      bgColor: "bg-tots-peach/10"
     },
     {
       icon: <CheckCircle className="w-8 h-8 text-green-500" />,
       title: "Quality Gear",
-      description: "We provide clean, safe, high-quality baby equipment for your peace of mind."
+      description: "We provide clean, safe, high-quality baby equipment for your peace of mind.",
+      bgColor: "bg-green-50"
     },
     {
       icon: <PiggyBank className="w-8 h-8 text-blue-500" />,
       title: "Save Money",
-      description: "Rent what you need instead of buying expensive equipment for short trips."
+      description: "Rent what you need instead of buying expensive equipment for short trips.",
+      bgColor: "bg-blue-50"
     },
     {
       icon: <Clock className="w-8 h-8 text-orange-500" />,
       title: "Delivered On Time",
-      description: "Your baby equipment will be waiting for you when you arrive at your destination."
+      description: "Your baby equipment will be waiting for you when you arrive at your destination.",
+      bgColor: "bg-orange-50"
     }
   ];
 
@@ -37,14 +41,9 @@ const WhyTravelLightSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature, index) => (
-            <div 
+            <div
               key={index}
-              className={`p-6 rounded-2xl ${
-                index === 0 ? 'bg-tots-peach/10' :
-                index === 1 ? 'bg-green-50' :
-                index === 2 ? 'bg-blue-50' :
-                'bg-orange-50'
-              }`}
+              className={`${feature.bgColor} p-6 rounded-2xl shadow-lg transition hover:shadow-xl`}
             >
               <div className="mb-4">
                 {feature.icon}
@@ -59,4 +58,4 @@ const WhyTravelLightSection = () => {
   );
 };
 
-export default WhyTravelLightSection; 
+export default WhyTravelLightSection;

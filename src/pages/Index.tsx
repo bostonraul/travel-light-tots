@@ -5,6 +5,33 @@ import VacationLifesaverSection from '@/components/VacationLifesaverSection';
 import ReadyToTravelSection from '@/components/ReadyToTravelSection';
 import WhyTravelLightSection from '@/components/WhyTravelLightSection';
 
+const smoothScrollTo = (targetId: string, duration = 400) => {
+  const target = document.getElementById(targetId);
+  if (!target) return;
+
+  const start = window.pageYOffset;
+  const end = target.getBoundingClientRect().top + window.pageYOffset;
+  const distance = end - start;
+  const startTime = performance.now();
+
+  const animateScroll = (currentTime: number) => {
+    const timeElapsed = currentTime - startTime;
+    const progress = Math.min(timeElapsed / duration, 1);
+    const easeInOutQuad = progress < 0.5
+      ? 2 * progress * progress
+      : -1 + (4 - 2 * progress) * progress;
+
+    window.scrollTo(0, start + distance * easeInOutQuad);
+
+    if (timeElapsed < duration) {
+      requestAnimationFrame(animateScroll);
+    }
+  };
+
+  requestAnimationFrame(animateScroll);
+};
+
+
 const LandingPage = () => {
   const [isLoading, setIsLoading] = useState(false);
 
@@ -43,7 +70,7 @@ const LandingPage = () => {
     // Scroll to form
     const form = document.getElementById('travel-form');
     if (form) {
-      form.scrollIntoView({ behavior: 'smooth' });
+      smoothScrollTo('travel-form', 400);
     }
   };
 
@@ -51,7 +78,7 @@ const LandingPage = () => {
     // Scroll to form
     const form = document.getElementById('travel-form');
     if (form) {
-      form.scrollIntoView({ behavior: 'smooth' });
+      smoothScrollTo('travel-form', 250);
     }
   };
 

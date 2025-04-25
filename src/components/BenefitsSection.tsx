@@ -14,7 +14,7 @@ const BenefitsSection: React.FC<BenefitsSectionProps> = ({
   onButtonClick 
 }) => {
   const benefits = [
-    'Save space in your car',
+    'Avoid Extra Baggage Fees When Flying',
     'Clean, quality equipment',
     'Convenience that makes travel stress-free',
     'Support local family businesses'
@@ -23,14 +23,19 @@ const BenefitsSection: React.FC<BenefitsSectionProps> = ({
   const handleClick = async () => {
     try {
       console.log('Benefits button clicked'); // Debug log
-      if (onButtonClick) {
-        await onButtonClick("Book your baby gear");
-      }
+  
+      // 🔁 SCROLL FIRST
       onBookClick();
+  
+      // 🧾 THEN LOG IN BACKGROUND (non-blocking)
+      if (onButtonClick) {
+        onButtonClick("Book your baby gear"); // Don't await this
+      }
     } catch (error) {
       console.error('Error in handleClick:', error);
     }
   };
+  
 
   return (
     <section className="py-16 px-4 bg-gradient-to-r from-tots-yellow/20 to-tots-peach/20">

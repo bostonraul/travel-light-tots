@@ -30,7 +30,7 @@ interface FeatureCardProps {
 }
 
 const FeatureCard = ({ icon, title, description }: FeatureCardProps) => (
-  <div className="bg-white/70 backdrop-blur-sm rounded-xl p-6 shadow-sm h-full">
+  <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100">
     <div className="mb-4 text-tots-peach">
       {icon}
     </div>

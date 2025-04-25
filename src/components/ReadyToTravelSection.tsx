@@ -12,17 +12,22 @@ const ReadyToTravelSection: React.FC<ReadyToTravelSectionProps> = ({
   isLoading,
   onButtonClick 
 }) => {
-  const handleClick = async () => {
+  const handleClick = () => {
     try {
-      console.log('Ready to Travel button clicked'); // Debug log
-      if (onButtonClick) {
-        await onButtonClick("Plan your trip");
-      }
+      console.log('Ready to Travel button clicked'); // Optional debug
+  
+      // ✅ SCROLL IMMEDIATELY
       onPlanClick();
-    } catch (error) {
+  
+      // 📝 LOG IN BACKGROUND
+      if (onButtonClick) {
+        onButtonClick("Plan your trip"); // don't await
+      }
+        } catch (error) {
       console.error('Error in handleClick:', error);
     }
   };
+  
 
   return (
     <section className="py-20 px-4 text-center">

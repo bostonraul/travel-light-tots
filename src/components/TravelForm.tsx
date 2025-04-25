@@ -19,48 +19,44 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 
+const CITIES = [
+  "Hyderabad", "Kochi", "Bangalore", "New Delhi", "Mumbai",
+  "Pune", "Gurgaon", "Chennai", "Goa", "Others"
+];
+
+const GEAR_OPTIONS = [
+  "Stroller", "Crib", "CarSeat", "HighChair", "Bassinet", "Others"
+];
+
 interface TravelFormProps {
   onSubmitSuccess?: () => void;
 }
 
 const TravelForm: React.FC<TravelFormProps> = ({ onSubmitSuccess }) => {
   const [date, setDate] = useState<Date>();
-  const [destination, setDestination] = useState('');
+  const [city, setCity] = useState('');
+  const [gearNeeded, setGearNeeded] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [showDialog, setShowDialog] = useState(false);
   const [calendarOpen, setCalendarOpen] = useState(false);
 
   const webhookUrl = "https://script.google.com/macros/s/AKfycbwn-uEohSTftq6lBsx8woI2b2Fc0wWeO6TiEWK8Cootxf7s7ad3btV37UwSReI8dlpbFg/exec";
 
-  // Function to log button clicks without form data
-  const logButtonClick = async (ctaType: string) => {
-    try {
-      const params = new URLSearchParams({
-        travel_date: "",
-        destination: "",
-        submitted_at: new Date().toISOString(),
-        cta: ctaType
-      });
-
-      const urlWithParams = `${webhookUrl}?${params.toString()}`;
-      console.log('Request URL:', urlWithParams);
-
-      await fetch(urlWithParams, {
-        method: "GET",
-        mode: "no-cors",
-      });
-    } catch (error) {
-      console.error("Error logging button click:", error);
-    }
+  const toggleGear = (item: string) => {
+    setGearNeeded(prev =>
+      prev.includes(item)
+        ? prev.filter(g => g !== item)
+        : [...prev, item]
+    );
   };
 
   const handleSubmit = async (e: React.FormEvent, ctaType: string) => {
     e.preventDefault();
 
-    if (!date || !destination.trim()) {
+    if (!date || !city.trim() || gearNeeded.length === 0) {
       toast({
         title: "Missing information",
-        description: "Please select both a date and destination",
+        description: "Please select date, city, and gear needed.",
         variant: "destructive",
       });
       return;
@@ -72,26 +68,24 @@ const TravelForm: React.FC<TravelFormProps> = ({ onSubmitSuccess }) => {
       const currentTime = new Date().toISOString();
       const params = new URLSearchParams({
         travel_date: format(date, 'PP'),
-        destination: destination.trim(),
+        city: city,
+        gear_needed: gearNeeded.join(', '),
         submitted_at: currentTime,
         cta: ctaType
       });
 
       const urlWithParams = `${webhookUrl}?${params.toString()}`;
-      console.log('Request URL:', urlWithParams);
 
-      const response = await fetch(urlWithParams, {
+      await fetch(urlWithParams, {
         method: "GET",
         mode: "no-cors",
       });
 
-      console.log('Request sent successfully');
-
       setShowDialog(true);
-      // Reset form
       setDate(undefined);
-      setDestination('');
-      
+      setCity('');
+      setGearNeeded([]);
+
       toast({
         title: "Success!",
         description: "We've received your request.",
@@ -117,7 +111,8 @@ const TravelForm: React.FC<TravelFormProps> = ({ onSubmitSuccess }) => {
 
   return (
     <>
-      <form onSubmit={(e) => handleSubmit(e, "Tell us your needs")} className="space-y-4">
+      <form onSubmit={(e) => handleSubmit(e, "Tell us your needs")} className="space-y-6">
+        {/* Date */}
         <div className="space-y-2">
           <label htmlFor="travel-date" className="block text-sm font-medium text-gray-700">
             When are you traveling?
@@ -128,7 +123,7 @@ const TravelForm: React.FC<TravelFormProps> = ({ onSubmitSuccess }) => {
                 id="travel-date"
                 variant={"outline"}
                 className={cn(
-                  "w-full justify-start text-left font-normal border-gray-300 hover:bg-gray-50",
+                  "w-full justify-start text-left font-normal border-gray-300 hover:bg-gray-50 h-12 px-4 text-sm md:text-base bg-[#fefcf8]",
                   !date && "text-muted-foreground"
                 )}
               >
@@ -148,19 +143,49 @@ const TravelForm: React.FC<TravelFormProps> = ({ onSubmitSuccess }) => {
           </Popover>
         </div>
 
+        {/* City Dropdown */}
         <div className="space-y-2">
-          <label htmlFor="destination" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="city" className="block text-sm font-medium text-gray-700">
             Where are you headed?
           </label>
-          <Input
-            id="destination"
-            placeholder="Enter your destination"
-            className="w-full border-gray-300"
-            value={destination}
-            onChange={(e) => setDestination(e.target.value)}
-          />
+          <select
+            id="city"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            className="w-full h-12 px-4 text-sm md:text-base text-muted-foreground font-normal bg-[#fefcf8] border border-gray-300 rounded-md shadow-sm appearance-none"
+            required
+          >
+            <option value="">Select your destination</option>
+            {CITIES.map((city) => (
+              <option key={city} value={city}>
+                {city}
+              </option>
+            ))}
+          </select>
         </div>
 
+        {/* Gear Selection */}
+        <div className="space-y-2">
+          <label className="block text-sm font-medium text-gray-700">
+            Which baby gear do you need?
+          </label>
+          <div className="grid grid-cols-2 gap-2">
+            {GEAR_OPTIONS.map((gear) => (
+              <label key={gear} className="flex items-center space-x-2 text-sm">
+                <input
+                  type="checkbox"
+                  value={gear}
+                  checked={gearNeeded.includes(gear)}
+                  onChange={() => toggleGear(gear)}
+                  className="h-4 w-4 text-primary"
+                />
+                <span>{gear}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+
+        {/* Submit */}
         <Button
           type="submit"
           disabled={isLoading}
@@ -177,6 +202,7 @@ const TravelForm: React.FC<TravelFormProps> = ({ onSubmitSuccess }) => {
         </Button>
       </form>
 
+      {/* Confirmation Dialog */}
       <Dialog open={showDialog} onOpenChange={setShowDialog}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>

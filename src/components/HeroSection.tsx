@@ -11,24 +11,28 @@ const HeroSection = () => {
           <div className="space-y-6 animate-fade-in">
             <div className="flex items-center space-x-2">
               <Baby className="h-8 w-8 text-tots-peach" />
-              <h2 className="text-lg font-medium text-gray-600">ToyBuddy</h2>
+              <h2 className="text-lg font-heading text-gray-600">ToyBuddy</h2>
             </div>
             
-            <h1 className="font-bold text-4xl md:text-5xl lg:text-6xl">
+            <h1 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl">
               <span className="text-gray-900">Baby on board?</span>
               <br />
-              <span className="bg-gradient-to-r from-tots-peach to-tots-blue bg-clip-text text-transparent">
+              <span classNa                                                                           me="bg-gradient-to-r from-tots-peach to-tots-blue bg-clip-text text-transparent">
                 Travel light!
               </span>
             </h1>
-            
-            <p className="text-lg md:text-xl text-gray-600 max-w-lg">
+            <p className="font-heading">
+               This should look different (Baloo 2 test)
+            </p>
+
+            <p className="font-body text-lg md:text-xl text-gray-600 max-w-lg">
               Just tell us your gear needs, and we'll handle the rest. Enjoy your family vacation 
               without lugging around bulky baby equipment.
             </p>
+
             
             <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-lg p-6 md:p-8 border border-gray-100">
-              <h3 className="text-xl font-medium mb-4">Where are you heading with your little one?</h3>
+              <h3 className="text-xl font-heading mb-4">Where are you heading with your little one?</h3>
               <TravelForm />
             </div>
           </div>
