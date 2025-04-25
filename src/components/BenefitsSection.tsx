@@ -14,7 +14,7 @@ const BenefitsSection: React.FC<BenefitsSectionProps> = ({
   onButtonClick 
 }) => {
   const benefits = [
-    'Avoid Extra Baggage Fees When Flying',
+    'Avoid extra baggage fees when flying',
     'Clean, quality equipment',
     'Convenience that makes travel stress-free',
     'Support local family businesses'
