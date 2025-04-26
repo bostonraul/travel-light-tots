@@ -28,6 +28,10 @@ const GEAR_OPTIONS = [
   "Stroller", "Crib", "CarSeat", "HighChair", "Bassinet", "Others"
 ];
 
+const DURATION_OPTIONS = [
+  "5 hrs", "24 hrs", "1 week", "15 days", "1 month", "Custom Duration"
+];
+
 interface TravelFormProps {
   onSubmitSuccess?: () => void;
 }
@@ -35,6 +39,7 @@ interface TravelFormProps {
 const TravelForm: React.FC<TravelFormProps> = ({ onSubmitSuccess }) => {
   const [date, setDate] = useState<Date>();
   const [city, setCity] = useState('');
+  const [duration, setDuration] = useState(''); // <-- Added state for duration
   const [gearNeeded, setGearNeeded] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [showDialog, setShowDialog] = useState(false);
@@ -53,10 +58,10 @@ const TravelForm: React.FC<TravelFormProps> = ({ onSubmitSuccess }) => {
   const handleSubmit = async (e: React.FormEvent, ctaType: string) => {
     e.preventDefault();
 
-    if (!date || !city.trim() || gearNeeded.length === 0) {
+    if (!date || !city.trim() || !duration || gearNeeded.length === 0) {
       toast({
         title: "Missing information",
-        description: "Please select date, city, and gear needed.",
+        description: "Please select date, city, duration, and gear needed.",
         variant: "destructive",
       });
       return;
@@ -69,6 +74,7 @@ const TravelForm: React.FC<TravelFormProps> = ({ onSubmitSuccess }) => {
       const params = new URLSearchParams({
         travel_date: format(date, 'PP'),
         city: city,
+        duration: duration, // <-- Added duration here
         gear_needed: gearNeeded.join(', '),
         submitted_at: currentTime,
         cta: ctaType
@@ -84,6 +90,7 @@ const TravelForm: React.FC<TravelFormProps> = ({ onSubmitSuccess }) => {
       setShowDialog(true);
       setDate(undefined);
       setCity('');
+      setDuration(''); // <-- Clear duration
       setGearNeeded([]);
 
       toast({
@@ -164,6 +171,27 @@ const TravelForm: React.FC<TravelFormProps> = ({ onSubmitSuccess }) => {
           </select>
         </div>
 
+        {/* Duration Dropdown */}
+        <div className="space-y-2">
+          <label htmlFor="duration" className="block text-sm font-medium text-gray-700">
+            For how long do you need the gear?
+          </label>
+          <select
+            id="duration"
+            value={duration}
+            onChange={(e) => setDuration(e.target.value)}
+            className="w-full h-12 px-4 text-sm md:text-base text-muted-foreground font-normal bg-[#fefcf8] border border-gray-300 rounded-md shadow-sm appearance-none"
+            required
+          >
+            <option value="">Select duration</option>
+            {DURATION_OPTIONS.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </div>
+
         {/* Gear Selection */}
         <div className="space-y-2">
           <label className="block text-sm font-medium text-gray-700">
@@ -208,7 +236,9 @@ const TravelForm: React.FC<TravelFormProps> = ({ onSubmitSuccess }) => {
           <DialogHeader>
             <DialogTitle>Thanks for your interest!</DialogTitle>
             <DialogDescription className="pt-4 text-base">
-              You caught us early. Please call us at <span className="font-bold">81213</span> to discuss your needs.
+            You've caught us at an exciting stage — we’re building a trusted network of local families to provide you with the best baby gear experience.
+            At the moment, we don't have the requested gear available in your city, but we are growing fast!
+            One of our experts will personally reach out to you as soon as we find a match.
             </DialogDescription>
           </DialogHeader>
           <div className="flex justify-end mt-4">
