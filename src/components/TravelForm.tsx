@@ -25,12 +25,12 @@ const CITIES = [
 ];
 
 const babyGearOptions = [
-  { name: "Stroller", icon: "🚼" },
-  { name: "Crib", icon: "🛏️" },
-  { name: "CarSeat", icon: "🚗" },
-  { name: "HighChair", icon: "🍽️" },
-  { name: "Bassinet", icon: "🛌" },
-  { name: "Others", icon: "➕" },
+  { name: "Stroller", icon: "/icons/stroller.png" },
+  { name: "Crib", icon: "/icons/crib.png" },
+  { name: "CarSeat", icon: "/icons/bayseat.png" },
+  { name: "HighChair", icon: "/icons/highchair.png" },
+  { name: "Bassinet", icon: "/icons/bassinets.png" },
+  { name: "Others", icon: "/icons/others.png" },
 ];
 
 const DURATION_OPTIONS = [
@@ -202,8 +202,8 @@ const TravelForm: React.FC<TravelFormProps> = ({ onSubmitSuccess }) => {
           <label className="block text-sm font-medium text-gray-700">
             Which baby gear do you need?
           </label>
-          <div className="grid grid-cols-2 gap-2">
-          {babyGearOptions.map((gear) => (
+            <div className="grid grid-cols-2 gap-2">
+            {babyGearOptions.map((gear) => (
   <label
     key={gear.name}
     className="flex items-center space-x-3 border border-gray-200 rounded-lg px-4 py-3 bg-white hover:shadow-md transition cursor-pointer"
@@ -216,13 +216,17 @@ const TravelForm: React.FC<TravelFormProps> = ({ onSubmitSuccess }) => {
       className="h-5 w-5 text-primary accent-primary"
     />
     <span className="flex items-center text-base">
-      <span className="text-xl mr-2">{gear.icon}</span>
+      <img
+        src={gear.icon}
+        alt={gear.name}
+        className="h-5 w-5 mr-2 object-contain"
+      />
       {gear.name}
     </span>
   </label>
 ))}
+            </div>
           </div>
-        </div>
 
         {/* Submit */}
         <Button
