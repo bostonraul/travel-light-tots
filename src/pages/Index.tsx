@@ -4,6 +4,8 @@ import BenefitsSection from '@/components/BenefitsSection';
 import VacationLifesaverSection from '@/components/VacationLifesaverSection';
 import ReadyToTravelSection from '@/components/ReadyToTravelSection';
 import WhyTravelLightSection from '@/components/WhyTravelLightSection';
+import TinyTravellerLightbox from "@/components/TinyTravellerLightbox";
+
 
 const smoothScrollTo = (targetId: string, duration = 400) => {
   const target = document.getElementById(targetId);
@@ -13,6 +15,7 @@ const smoothScrollTo = (targetId: string, duration = 400) => {
   const end = target.getBoundingClientRect().top + window.pageYOffset;
   const distance = end - start;
   const startTime = performance.now();
+
 
   const animateScroll = (currentTime: number) => {
     const timeElapsed = currentTime - startTime;
@@ -34,6 +37,7 @@ const smoothScrollTo = (targetId: string, duration = 400) => {
 
 const LandingPage = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [showTinyTraveller, setShowTinyTraveller] = useState(false);
 
   const webhookUrl = "https://script.google.com/macros/s/AKfycbwn-uEohSTftq6lBsx8woI2b2Fc0wWeO6TiEWK8Cootxf7s7ad3btV37UwSReI8dlpbFg/exec";
 
@@ -140,6 +144,19 @@ const LandingPage = () => {
         onButtonClick={logButtonClick}
         isLoading={isLoading}
       />
+      {/* TinyTraveller Become Provider Button */}
+<div className="text-center my-10">
+  <button
+    onClick={() => setShowTinyTraveller(true)}
+    className="text-blue-600 underline hover:text-blue-800 font-medium text-lg"
+  >
+    Know us | Join us | Become a Provider
+  </button>
+</div>
+
+{/* TinyTraveller Lightbox */}
+<TinyTravellerLightbox open={showTinyTraveller} onClose={() => setShowTinyTraveller(false)} />
+
     </main>
   );
 };

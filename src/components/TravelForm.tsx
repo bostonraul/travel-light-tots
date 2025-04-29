@@ -7,7 +7,7 @@ import { Calendar } from '@/components/ui/calendar';
 import {
   Popover,
   PopoverContent,
-  PopoverTrigger,
+  PopoverTrigger, 
 } from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
 import { toast } from '@/hooks/use-toast';
@@ -24,8 +24,13 @@ const CITIES = [
   "Pune", "Gurgaon", "Chennai", "Goa", "Others"
 ];
 
-const GEAR_OPTIONS = [
-  "Stroller", "Crib", "CarSeat", "HighChair", "Bassinet", "Others"
+const babyGearOptions = [
+  { name: "Stroller", icon: "🚼" },
+  { name: "Crib", icon: "🛏️" },
+  { name: "CarSeat", icon: "🚗" },
+  { name: "HighChair", icon: "🍽️" },
+  { name: "Bassinet", icon: "🛌" },
+  { name: "Others", icon: "➕" },
 ];
 
 const DURATION_OPTIONS = [
@@ -198,18 +203,24 @@ const TravelForm: React.FC<TravelFormProps> = ({ onSubmitSuccess }) => {
             Which baby gear do you need?
           </label>
           <div className="grid grid-cols-2 gap-2">
-            {GEAR_OPTIONS.map((gear) => (
-              <label key={gear} className="flex items-center space-x-2 text-sm">
-                <input
-                  type="checkbox"
-                  value={gear}
-                  checked={gearNeeded.includes(gear)}
-                  onChange={() => toggleGear(gear)}
-                  className="h-4 w-4 text-primary"
-                />
-                <span>{gear}</span>
-              </label>
-            ))}
+          {babyGearOptions.map((gear) => (
+  <label
+    key={gear.name}
+    className="flex items-center space-x-3 border border-gray-200 rounded-lg px-4 py-3 bg-white hover:shadow-md transition cursor-pointer"
+  >
+    <input
+      type="checkbox"
+      value={gear.name}
+      checked={gearNeeded.includes(gear.name)}
+      onChange={() => toggleGear(gear.name)}
+      className="h-5 w-5 text-primary accent-primary"
+    />
+    <span className="flex items-center text-base">
+      <span className="text-xl mr-2">{gear.icon}</span>
+      {gear.name}
+    </span>
+  </label>
+))}
           </div>
         </div>
 
